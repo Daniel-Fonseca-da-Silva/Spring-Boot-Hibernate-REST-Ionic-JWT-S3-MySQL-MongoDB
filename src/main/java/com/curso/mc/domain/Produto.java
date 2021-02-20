@@ -31,8 +31,8 @@ public class Produto implements Serializable{
 	@ManyToMany
 	// Mapeamento Tabela criada do muito para muitos entre Categoria e Produto
 	@JoinTable(name = "PRODUTO_CATEGORIA", 
-	joinColumns = @JoinColumn(name = "produto_id"),
-	inverseJoinColumns = @JoinColumn(name = "categoria_id")
+	joinColumns = @JoinColumn(name = "produto_id"), // Chave estrangeira
+	inverseJoinColumns = @JoinColumn(name = "categoria_id") // Chave estrangeira
 	) 
 	// Associação com Categoria
 	private List<Categoria> categorias = new ArrayList<>();
