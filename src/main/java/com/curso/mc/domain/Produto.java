@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity // Entidade do JPA
 public class Produto implements Serializable{
 	
@@ -23,6 +25,8 @@ public class Produto implements Serializable{
 	private Integer id;
 	private String nome;
 	private Double preco;
+	
+	@JsonBackReference
 	
 	@ManyToMany
 	// Mapeamento Tabela criada do muito para muitos entre Categoria e Produto
