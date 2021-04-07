@@ -37,12 +37,14 @@ public class Cliente implements Serializable{
 	// Associação com Endereco
 	private List<Endereco> enderecos = new ArrayList<>();
 	
+	// Associação com Pedido
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
+	
 	@ElementCollection 
 	@CollectionTable(name = "TELEFONE") // Nome da chave estrangeira que conecta Cliente com Telefone
 	
 	private Set<String> telefones = new HashSet<>();
-	
-	
 	
 	// Construtor vazio
 	public Cliente() {
@@ -114,6 +116,14 @@ public class Cliente implements Serializable{
 
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
+	}
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 	
 	// hashCode e Equals somente id
