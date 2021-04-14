@@ -13,6 +13,7 @@ import com.curso.mc.domain.Cidade;
 import com.curso.mc.domain.Cliente;
 import com.curso.mc.domain.Endereco;
 import com.curso.mc.domain.Estado;
+import com.curso.mc.domain.ItemPedido;
 import com.curso.mc.domain.Pagamento;
 import com.curso.mc.domain.PagamentoComBoleto;
 import com.curso.mc.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.curso.mc.repositories.CidadeRepository;
 import com.curso.mc.repositories.ClienteRepository;
 import com.curso.mc.repositories.EnderecoRepository;
 import com.curso.mc.repositories.EstadoRepository;
+import com.curso.mc.repositories.ItemPedidoRepository;
 import com.curso.mc.repositories.PagamentoRepository;
 import com.curso.mc.repositories.PedidoRepository;
 import com.curso.mc.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class CursomcApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) 
 	{
@@ -148,6 +153,25 @@ public class CursomcApplication implements CommandLineRunner{
 		
 		// Salva no BD objetos Pagamento
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+		
+		// Cria os objetos de ItemPedido
+		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip1, ip2));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+		
+		// Salva no BD objetos ItemPedido
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		
 	}
 
 }
