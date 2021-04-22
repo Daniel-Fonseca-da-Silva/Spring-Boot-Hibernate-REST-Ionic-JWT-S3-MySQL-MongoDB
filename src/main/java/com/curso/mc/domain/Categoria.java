@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity // Entidade do JPA
 public class Categoria implements Serializable{
 	
@@ -23,7 +21,6 @@ public class Categoria implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	@JsonManagedReference
 	@ManyToMany(mappedBy = "categorias") // Mapeamento da Categoria para Produto
 	
 	// Associação com Produto
